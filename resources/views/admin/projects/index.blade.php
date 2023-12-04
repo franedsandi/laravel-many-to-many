@@ -13,23 +13,35 @@
         {{ session('deleted') }}
     </div>
     @endif
-    <table class="table table-dark">
+    <table class="table table-dark text-center">
         <thead>
-            <tr class="text-center">
-                <th scope="col">id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-                <th scope="col">Actions</th>
+            <tr >
+                <th class="col-1" scope="col">id</th>
+                <th class="col-2" scope="col">Title</th>
+                <th class="col-1" scope="col">Type</th>
+                <th class="col-4" scope="col">Description</th>
+                <th scope="col">Technologies</th>
+                <th class="col-1" scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($projects as $project)
+
             <tr>
                 <th>{{ $project->id }}</th>
                 <td>{{ $project->title }}</td>
                 <td>{{ $project->type?->name ?? '-' }}</td>
                 <td>{{ $project->description }}</td>
+                <td class=" gap-1">
+                    @forelse ($project->technologies as $technology)
+                        <span class="badge rounded-pill text-bg-light">{{$technology->name}}</span>
+                    @empty
+                        -
+                    @endforelse ()
+
+
+
+                </td>
                 <td>
                     <div class="d-flex gap-2">
                         @include('generic_stuff.generic_show_buton', ['route' => route('admin.projects.show', $project)])

@@ -24,7 +24,14 @@
                     @if ($project->type)
                         <p>Type: {{ $project->type->name }}</p>
                     @endif
-
+                    @if ($project->technologies->count())
+                    <div class="d-flex mb-3">
+                        <p class="my-0">Technologies:</p>
+                            @foreach ($project->technologies as $technology )
+                                <span class="badge rounded-pill text-bg-dark mx-3">{{$technology->name}}</span>
+                            @endforeach
+                    </div>
+                    @endif
                     <p class="card-text"><span>Publication Date: </span>{{ $project->publication_date }}</p>
                     <p class="card-text">{{ $project->description }}</p>
                     <div class="d-flex  justify-content-center gap-2">
