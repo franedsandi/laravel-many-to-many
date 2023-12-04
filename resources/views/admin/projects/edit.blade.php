@@ -38,6 +38,23 @@
             @endforeach
         </select>
     </div>
+    <div class="mb-3">
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+            @foreach ($technologies as $technology )
+                <input
+                id="technology_{{$technology->id}}"
+                class="btn-check"
+                autocomplete="off"
+                type="checkbox"
+                name="technologies[]"
+                value="{{$technology->id}}">
+
+                <label
+                class="btn btn-outline-dark"
+                for="technology_{{$technology->id}}">{{$technology->name}}</label>
+            @endforeach
+        </div>
+    </div>
 
     <div class="d-flex gap-2 mt-2">
         <button type="submit" class="btn btn-warning"> Submit</button>

@@ -28,7 +28,7 @@
                     <div class="d-flex mb-3">
                         <p class="my-0">Technologies:</p>
                             @foreach ($project->technologies as $technology )
-                                <span class="badge rounded-pill text-bg-dark mx-3">{{$technology->name}}</span>
+                                <span class="badge rounded-pill text-bg-dark mx-1">{{$technology->name}}</span>
                             @endforeach
                     </div>
                     @endif

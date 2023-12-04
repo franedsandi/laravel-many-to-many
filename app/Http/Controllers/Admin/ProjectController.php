@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProjectRequest;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,8 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $types = Type::all();
-        return view('admin.projects.create', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -52,7 +54,12 @@ class ProjectController extends Controller
             $form_data['image'] = Storage::put('uploads', $form_data['image']);
         }
 
+
         $new_project = Project::create($form_data);
+
+        if (array_key_exists('technologies', $form_data)) {
+            $new_project->technologies()->attach($form_data['technologies']);
+        }
 
         return redirect()->route('admin.projects.show', $new_project->id);
     }
@@ -76,7 +83,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -105,6 +113,10 @@ class ProjectController extends Controller
 
 
         $project->update($form_data);
+
+        if (array_key_exists('technologies', $form_data)) {
+            $project->technologies()->attach($form_data['technologies']);
+        }
 
         return redirect()->route('admin.projects.show', ['project' => $project->id])->with('updated', "The project $project->title have been updated");
     }

@@ -16,6 +16,24 @@
         </div>
 
         <div class="mb-3">
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                @foreach ($technologies as $technology )
+                    <input
+                    id="technology_{{$technology->id}}"
+                    class="btn-check"
+                    autocomplete="off"
+                    type="checkbox"
+                    name="technologies[]"
+                    value="{{$technology->id}}">
+
+                    <label
+                    class="btn btn-outline-dark"
+                    for="technology_{{$technology->id}}">{{$technology->name}}</label>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="mb-3">
             <label for="description" class="form-label">Project Description</label>
             <textarea type="text" class="form-control" id="description" name="description" rows="3" >{{old('description')}}
             </textarea>
