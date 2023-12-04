@@ -19,7 +19,7 @@
                 <th scope="col">id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Level</th>
-                <th scope="col">Actions</th>
+                <th class="col-2 text-center" scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,8 +28,8 @@
                 <th>{{ $technology->id }}</th>
                 <td>{{ $technology->name }}</td>
                 <td>{{ $technology->level }}</td>
-                <td>
-                    <div class="d-flex gap-2">
+                <td class="text-center">
+                    <div class="d-flex gap-2 justify-content-center">
                         @include('generic_stuff.generic_show_buton', ['route' => route('admin.technologies.show', $technology)])
                         @include('generic_stuff.generic_edit_buton', ['route' => route('admin.technologies.edit', $technology)])
                         @include('generic_stuff.generic_delete_buton', ['route' => route('admin.technologies.destroy', $technology)])

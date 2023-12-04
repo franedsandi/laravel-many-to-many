@@ -1,21 +1,21 @@
 @extends('layouts.admin')
 
 @section('content')
+<div>
+<h1>Index Types</h1>
 
-<h1 class="fw-bold">Index Types</h1>
-
-    <form class="col-5" action="{{ route('admin.types.store') }}" method="POST">
+    <form action="{{ route('admin.types.store') }}" method="POST">
         @csrf
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="New Type" name="name" >
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Create</button>
+        <div class="d-flex mb-3 border border-3 border-black">
+            <input type="text" class="form-control" placeholder="New Type" name="name">
+            <button class="btn btn-outline-secondary border-0 rounded-0" type="submit" id="button-addon2">Create</button>
         </div>
         @error('name')
         <p class="text-danger">{{$message}}</p>
         @enderror
     </form>
 
-    <table class="table table-dark w-75">
+    <table class="table table-dark">
         <thead>
           <tr>
             <th scope="col">Name Types</th>
@@ -42,7 +42,7 @@
 
                     </td>
 
-                    <td class="d-flex justify-content-around">
+                    <td class="d-flex justify-content-center gap-2">
 
                         <button onclick="startEdit({{ $type->id }})" class="btn btn-warning">Edit</button>
                         @include('generic_stuff.generic_delete_buton', [
@@ -55,7 +55,7 @@
             @endforeach
         </tbody>
     </table>
-
+</div>
     <script>
         function submitForm(id) {
             const form = document.getElementById('form-edit-' + id);

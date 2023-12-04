@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class='container'>
-        <h1>Projects List by Type holi</h1>
+    <div>
+        <h1>Projects List by Type</h1>
 
-        <table class="table table-dark table-striped mt-5" >
-            <thead>
+        <table class="table table-dark text-center" >
+        <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Type</th>
-            <th scope="col">Posts</th>
+            <th class="col-4" scope="col">ID</th>
+            <th class="col-4" scope="col">Type</th>
+            <th class="col-4" scope="col">Posts</th>
           </tr>
         </thead>
         <tbody>
@@ -18,7 +18,7 @@
                 <td>{{$type->id}}</td>
                 <td>{{$type->name}}</td>
                 <td>
-                    <ul>
+                    <ul class="list-unstyled">
                         @foreach ($type->projects as $project)
                         <li>
                             <a href="{{route('admin.projects.show', $project)}}">{{$project->title}}</a>
