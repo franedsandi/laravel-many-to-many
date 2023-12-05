@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,7 @@ Route::middleware(['auth', 'verified'])
         Route::resource('technologies', TechnologyController::class);
         Route::resource('types', TypeController::class);
         Route::get('type-project', [TypeController::class, 'typeProject'])->name('type-project');
+        Route::get('project-technology/{technology}', [TechnologyController::class, 'projectTechnology'])->name('admin.technologies.project-technology');
     });
 
 require __DIR__.'/auth.php';

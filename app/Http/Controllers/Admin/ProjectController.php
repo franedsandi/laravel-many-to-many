@@ -21,7 +21,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderBy('id', 'desc')->paginate(4);
+        $projects = Project::orderBy('id', 'desc')->paginate(7);
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -84,6 +84,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
+
         return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
@@ -97,6 +98,7 @@ class ProjectController extends Controller
     public function update(ProjectRequest $request, Project $project)
     {
         $form_data = $request->all();
+
 
         if ($project->title === $form_data['title']) {
             $form_data['slug'] = $project->slug;
@@ -115,7 +117,10 @@ class ProjectController extends Controller
         $project->update($form_data);
 
         if (array_key_exists('technologies', $form_data)) {
-            $project->technologies()->attach($form_data['technologies']);
+            $project->technologies()->sync($form_data['technologies']);
+        }
+        else{
+            $project->technologies()->detach();
         }
 
         return redirect()->route('admin.projects.show', ['project' => $project->id])->with('updated', "The project $project->title have been updated");

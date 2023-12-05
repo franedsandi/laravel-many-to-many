@@ -47,7 +47,13 @@
                 autocomplete="off"
                 type="checkbox"
                 name="technologies[]"
-                value="{{$technology->id}}">
+                value="{{$technology->id}}"
+                @if ($errors->any() && in_array($technology->id,old('technologies',[])))
+                    checked
+                @elseif (!$errors->any() && $project->technologies->contains($technology))
+                    checked
+                @endif
+                >
 
                 <label
                 class="btn btn-outline-dark"
