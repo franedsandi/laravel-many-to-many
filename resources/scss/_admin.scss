@@ -5,7 +5,10 @@
     box-sizing: border-box;
 }
 header {
+    width: 100%;
+    position:fixed;
     height: 60px;
+    z-index: 99;
     .links a {
         color: white;
         padding: 10px;
@@ -20,8 +23,11 @@ header {
 }
 
 .main-wrapper{
+    padding-top: 60px;
     height: calc(100vh - 60px);
+    z-index: 98;
     .side-wrapper{
+        margin-left: 200px;
         width:calc(100vw - 200px);
         display:flex;
         justify-content: center;
@@ -31,6 +37,7 @@ header {
     }
 }
 aside {
+    position:fixed;
     width: 200px;
     height: 100%;
 
@@ -50,7 +57,5 @@ aside {
                     }
                 }
             }
-
         }
-
     }

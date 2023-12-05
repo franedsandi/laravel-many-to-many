@@ -21,7 +21,7 @@ class TechnologyController extends Controller
     }
     public function projectTechnology(Technology $technology){
         $project = $technology->projects;
-        return view('admin.technologies.project-technology');
+        return view('admin.technologies.project-technology', compact('project','technology'));
     }
     /**
      * Show the form for creating a new resource.

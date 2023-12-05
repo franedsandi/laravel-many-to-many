@@ -34,8 +34,8 @@
                 <td>{{ $project->description }}</td>
                 <td class=" gap-1">
                     @forelse ($project->technologies as $technology)
-                    <a class="badge rounded-pill text-bg-light"></a>href="{{route(admin.technology-project, $technology)}}">
-                        <span {{$technology->name}}</span></a>
+                    <a href="{{route('admin.admin.technologies.project-technology', $technology)}}" class="badge rounded-pill text-bg-light">
+                        <span> {{$technology->name}}</span></a>
                     @empty
                         -
                     @endforelse ()
